@@ -24,6 +24,7 @@
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
+        android:background="@drawable/border_set"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -35,6 +36,7 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Apellidos"
+        android:background="@drawable/border_set"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +49,7 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Numero"
+        android:background="@drawable/border_set"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +62,7 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Contraseña"
+        android:background="@drawable/border_set"
         android:inputType="textPersonName|textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,6 +76,7 @@
         android:ems="10"
         android:hint="Confirme contraseña"
         android:inputType="textPersonName|textPassword"
+        android:background="@drawable/border_set"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
@@ -84,6 +89,7 @@
         android:ems="10"
         android:hint="Numero de licencia"
         android:inputType="textPersonName"
+        android:background="@drawable/border_set"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
@@ -96,6 +102,7 @@
         android:ems="10"
         android:hint="Fecha nacimiento"
         android:inputType="date"
+        android:background="@drawable/border_set"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_apellidos" />

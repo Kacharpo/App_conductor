@@ -24,6 +24,7 @@
         android:ems="10"
         android:hint="Usuario"
         android:inputType="textPersonName"
+        android:background="@drawable/border_set"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -36,6 +37,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:background="@drawable/border_set"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
