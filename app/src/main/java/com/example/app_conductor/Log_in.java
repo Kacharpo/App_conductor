@@ -16,8 +16,13 @@ public class Log_in extends AppCompatActivity {
 
     }
 
-    public void ingresar(View view){
+    public void registro(View view){
         Intent i = new Intent(Log_in.this, Registro_conductor.class);
+        startActivity(i);
+        finish();
+    }
+    public void ingresar(View view){
+        Intent i = new Intent(Log_in.this, Principal.class);
         startActivity(i);
         finish();
     }
