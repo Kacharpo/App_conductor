@@ -44,11 +44,13 @@
         android:ems="10"
         android:hint="Password"
 
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/txt_usr_l">
+        app:layout_constraintTop_toBottomOf="@+id/txt_usr_l"
+        app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txt_pass"
