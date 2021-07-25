@@ -14,7 +14,7 @@ public class Mensaje extends AppCompatActivity {
         setContentView(R.layout.activity_mensaje);
     }
     public void avanzar(View view){
-        Intent i = new Intent(Mensaje.this, Log_in.class);
+        Intent i = new Intent(Mensaje.this, Principal.class);
         startActivity(i);
         finish();
     }

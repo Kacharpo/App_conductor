@@ -3,16 +3,22 @@ package com.example.app_conductor;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+import com.example.app_conductor.utils.InputValidation;
 
 public class Log_in extends AppCompatActivity {
-
+    private EditText et_usuario, et_contrasena;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
+        et_usuario = (EditText)findViewById(R.id.txt_usr);
+        et_contrasena = (EditText)findViewById(R.id.txt_pass);
 
     }
 
@@ -21,9 +27,37 @@ public class Log_in extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-    public void ingresar(View view){
-        Intent i = new Intent(Log_in.this, Principal.class);
+    public void recuperar_contra(View view){
+        Intent i = new Intent(Log_in.this, RecuperarContra.class);
         startActivity(i);
         finish();
+    }
+    public void ingresar(View view){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "registro",null,1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+
+        String usuario = et_usuario.getText().toString();
+        boolean usuario_b = InputValidation.isValidEditText(et_usuario, getString(R.string.field_is_required));
+        String contrasena = et_contrasena.getText().toString();
+        boolean contrasena_b = InputValidation.isValidEditText(et_contrasena, getString(R.string.field_is_required));
+
+        if(usuario_b && contrasena_b){
+            Cursor fila = db.rawQuery
+                    ("select correo, contrasena from registro_conductor where correo = '"+usuario+"' and contrasena = '"+contrasena+"'" ,null);
+            if(fila.moveToFirst()) {
+                if(usuario.equals(fila.getString(0)) && contrasena.equals(fila.getString(1))){
+                    Intent i = new Intent(Log_in.this, AlertaActivity.class);
+                    startActivity(i);
+                    finish();
+                }else{
+                    Toast.makeText(this, "Usuario y/o Contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                Toast.makeText(this, "No exite el registro", Toast.LENGTH_SHORT).show();
+            }
+            db.close();
+        }else {
+            Toast.makeText(this, "Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
+        }
     }
 }

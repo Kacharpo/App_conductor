@@ -18,8 +18,9 @@ public class AlertaActivity extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), DisponibilidadActivity.class);
-                startActivityForResult(intent, 0);
+                Intent i = new Intent(AlertaActivity.this, DisponibilidadActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }

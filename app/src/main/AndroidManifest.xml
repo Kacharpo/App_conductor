@@ -28,7 +28,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Registro_conductor" />
+        <activity android:name=".AlertaActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".DisponibilidadActivity" />
+
     </application>
+
 
 </manifest>
