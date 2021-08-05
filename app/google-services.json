@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "584198244203",
+    "project_id": "app-conductorlogin",
+    "storage_bucket": "app-conductorlogin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584198244203:android:22c6fc70bfee2e21c22e2e",
+        "android_client_info": {
+          "package_name": "com.example.app_conductor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584198244203-crmlb48h7f2nmba8ghebo1d33pb53fq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsntTSiAaAEVrakUgt9MZzrHa58MiHD6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584198244203-crmlb48h7f2nmba8ghebo1d33pb53fq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
