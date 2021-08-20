@@ -12,6 +12,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.app_conductor.utils.InputValidation;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -23,10 +29,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 
 public class Log_in extends AppCompatActivity {
     private EditText et_usuario, et_contrasena;
+    private CallbackManager callbackManager;
+    private LoginButton loginButton;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN = 1;
@@ -37,6 +47,18 @@ public class Log_in extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
         et_usuario = (EditText)findViewById(R.id.txt_usr);
         et_contrasena = (EditText)findViewById(R.id.txt_pass);
+
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        if(isLoggedIn){
+            Toast toast1 =
+                    Toast.makeText(getApplicationContext(),
+                            "Sesion iniciada con facebook : "+accessToken, Toast.LENGTH_SHORT);
+
+            toast1.show();
+            Intent a = new Intent(getApplicationContext(), Principal.class);
+            startActivity(a);
+        }
 
         // Configurar Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -49,10 +71,55 @@ public class Log_in extends AppCompatActivity {
         // Inicializar Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
+        callbackManager = CallbackManager.Factory.create();
+
+
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions("email");
+
+        // Callback registration
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(),
+                                "Log in exitoso !", Toast.LENGTH_SHORT);
+
+                toast1.show();
+                Intent a = new Intent(getApplicationContext(), Principal.class);
+                startActivity(a);
+
+            }
+
+            @Override
+            public void onCancel() {
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(),
+                                "Cancelado", Toast.LENGTH_SHORT);
+
+                toast1.show();
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(),
+                                "Error : "+exception, Toast.LENGTH_SHORT);
+
+                toast1.show();
+                Log.d("debug ", "Error : "+exception);
+            }
+        });
+
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
         //Resultado devuelto al iniciar el Intent de GoogleSignInApi.getSignInIntent (...);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
