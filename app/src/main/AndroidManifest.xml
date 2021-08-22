@@ -27,6 +27,7 @@
         </activity>
 
         <activity android:name=".Mensaje"></activity>
+        <activity android:name=".BienvenidoActivity" />
         <activity android:name=".Log_in" />
         <activity android:name=".Principal"/>
         <activity android:name=".RecuperarContra" />
