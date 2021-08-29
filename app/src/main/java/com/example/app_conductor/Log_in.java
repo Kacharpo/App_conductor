@@ -56,7 +56,7 @@ public class Log_in extends AppCompatActivity {
                             "Sesion iniciada con facebook : "+accessToken, Toast.LENGTH_SHORT);
 
             toast1.show();
-            Intent a = new Intent(getApplicationContext(), Principal.class);
+            Intent a = new Intent(getApplicationContext(), PrincipalMenuActivity.class);
             startActivity(a);
         }
 
@@ -90,7 +90,7 @@ public class Log_in extends AppCompatActivity {
                                 "Log in exitoso !", Toast.LENGTH_SHORT);
 
                 toast1.show();
-                Intent a = new Intent(getApplicationContext(), Principal.class);
+                Intent a = new Intent(getApplicationContext(), PrincipalMenuActivity.class);
                 startActivity(a);
 
             }
@@ -153,7 +153,7 @@ public class Log_in extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             //FirebaseUser user = mAuth.getCurrentUser();
-                            Intent a = new Intent(getApplicationContext(), Principal.class);
+                            Intent a = new Intent(getApplicationContext(), PrincipalMenuActivity.class);
                             startActivity(a);
 //Iniciar DASHBOARD u otra actividad luego del SigIn Exitoso
                         } else {
