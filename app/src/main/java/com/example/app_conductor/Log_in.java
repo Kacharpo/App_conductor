@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.app_conductor.Registro.Aviso_privacidad;
 import com.example.app_conductor.utils.InputValidation;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -178,6 +180,11 @@ public class Log_in extends AppCompatActivity {
 
     public void registro(View view){
         Intent i = new Intent(Log_in.this, Registro_conductor.class);
+        startActivity(i);
+        finish();
+    }
+    public void aviso(View view){
+        Intent i = new Intent(Log_in.this, Aviso_privacidad.class);
         startActivity(i);
         finish();
     }

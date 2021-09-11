@@ -23,14 +23,14 @@ public class Registro_conductor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_conductor);
-        this.et_nombre = (EditText)findViewById(R.id.txt_nombre);
-        this.et_apellido = (EditText)findViewById(R.id.txt_apellidos);
-        this.et_fecha = (EditText)findViewById(R.id.txt_fnac);
-        this.et_numero = (EditText)findViewById(R.id.txt_numero);
-        this.et_correo = (EditText)findViewById(R.id.txt_correo);
-        this.et_contrasena = (EditText)findViewById(R.id.txt_pass1);
-        this.et_confirmar = (EditText)findViewById(R.id.txt_pass2);
-        this.et_licencia = (EditText)findViewById(R.id.txt_licencia);
+        this.et_nombre = (EditText)findViewById(R.id.txt_c_nombre);
+        this.et_apellido = (EditText)findViewById(R.id.txt_c_apellido);
+        this.et_fecha = (EditText)findViewById(R.id.txt_c_fecha);
+        this.et_numero = (EditText)findViewById(R.id.txt_c_numero);
+        this.et_correo = (EditText)findViewById(R.id.txt_c_correo);
+        this.et_contrasena = (EditText)findViewById(R.id.txt_c_contrasena);
+        this.et_confirmar = (EditText)findViewById(R.id.txt_c_confirmar);
+        this.et_licencia = (EditText)findViewById(R.id.txt_c_licencia);
 
 
     }

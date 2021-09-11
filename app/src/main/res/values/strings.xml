@@ -69,7 +69,8 @@
     <string name="ti_disponibilidad">Disponibilidad</string>
 
     //fb
-    <string name="facebook_app_id">269823724953921</string> <string name="fb_login_protocol_scheme">fb269823724953921</string>
+    <string name="facebook_app_id">269823724953921</string>
+    <string name="fb_login_protocol_scheme">fb269823724953921</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_principal_menu">PrincipalMenuActivity</string>
