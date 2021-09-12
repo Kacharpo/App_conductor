@@ -18,7 +18,7 @@ public class RegistroConstructor implements Serializable {
     private String licencia;
 
     public RegistroConstructor(){}
-    public RegistroConstructor(String key, String nombre, String apellido, String fecha, String numero, String correo, String contrasena, String ruta, String licencia) {
+    public RegistroConstructor(String key, String nombre, String apellido, String fecha, String numero, String correo, String contrasena,  String licencia) {
         this.key = key;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -26,7 +26,6 @@ public class RegistroConstructor implements Serializable {
         this.numero = numero;
         this.correo = correo;
         this.contrasena = contrasena;
-        this.ruta = ruta;
         this.licencia = licencia;
     }
 

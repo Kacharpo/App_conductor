@@ -41,6 +41,10 @@
     <string name="txt_c_destino">Destino</string>
     //Maps
     <string name="marker_detail_lating">(%1$.2f,%2$.2f)</string>
+    //Fragment
+    <string name="tv_alertas">Alertas</string>
+    <string name="tv_calle1">Calle 1</string>
+    <string name="tv_calle2">Calle 2</string>
     //Correo
     <string name="subject">Asunto</string>
     <string name="to">Para</string>

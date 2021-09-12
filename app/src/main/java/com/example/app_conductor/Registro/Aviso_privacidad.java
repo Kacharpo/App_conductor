@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.example.app_conductor.Log_in;
 import com.example.app_conductor.R;
-import com.example.app_conductor.Registro_conductor;
 
 public class Aviso_privacidad extends AppCompatActivity {
 

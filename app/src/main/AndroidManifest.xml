@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_conductor">
-        <activity android:name=".Registro.Aviso_privacidad"></activity>
+        <activity android:name=".Registro.Registro_nuevo_conductor"></activity>
+        <activity android:name=".Registro.Aviso_privacidad" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -57,10 +58,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registro_conductor" />
+        <activity android:name=".Registro.RegistroControl" />
         <activity android:name=".AlertaActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".DisponibilidadActivity" />
+        <activity android:name=".ConfirmarCuenta" />
     </application>
 
 </manifest>

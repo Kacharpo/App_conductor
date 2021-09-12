@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -74,12 +73,6 @@ public class RegistroControl extends AppCompatActivity {
         btn_aceptar = (Button)findViewById(R.id.btn_c_aceptar);
         rb_terminos = (RadioButton)findViewById(R.id.rb_c_terminos);
 
-        String [] tipo = {"Tipo","Euroban", "Urban", "Combi"};
-
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tipo);
-
-        sp_tipo.setAdapter(adapter1);
-
         final String recipientEmail = "kacharpo.service@gmail.com";
         final String recipientPassword = "Kacharpo2000";
         final String subject = "Codigo de confrimacion";
@@ -90,7 +83,7 @@ public class RegistroControl extends AppCompatActivity {
         btn_aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(getApplicationContext(), "Entrando boton", Toast.LENGTH_SHORT).show();
                 int id_control = 1;
                 String nombre = et_nombre.getText().toString();
                 boolean nombre_b = InputValidation.isValidEditText(et_nombre,"Campo requerido");
@@ -106,17 +99,14 @@ public class RegistroControl extends AppCompatActivity {
                 boolean contrasena_b = InputValidation.isValidEditText(et_contrasena,"Campo requerido");
                 String confirmar = et_confirmar.getText().toString();
                 boolean confirmar_b = InputValidation.isValidEditText(et_confirmar,"Campo requerido");
-                String ruta = et_ruta.getText().toString();
-                boolean ruta_b = InputValidation.isValidEditText(et_ruta, "Campo requerido");
                 String licencia = et_licencia.getText().toString();
-                boolean licencia_b = InputValidation.isValidEditText(et_licencia, "Campo requerido");
-                String tipo = sp_tipo.getSelectedItem().toString();
                 boolean terminos = rb_terminos.isChecked();
 
-                if (nombre_b && apellido_b && fecha_b && numero_b && correo_b && contrasena_b && confirmar_b && ruta_b && licencia_b && !tipo.equals("Tipo")) {
+                if (nombre_b && apellido_b && fecha_b && numero_b && correo_b && contrasena_b && confirmar_b ) {
                     if (contrasena.equals(confirmar)) {
                         if (terminos == true) {
-                            RegistroConstructor emp = new RegistroConstructor(key,nombre, apellido, fecha,numero , correo, contrasena, ruta, licencia);
+                            Toast.makeText(getApplicationContext(), "Todo bien", Toast.LENGTH_SHORT).show();
+                            RegistroConstructor emp = new RegistroConstructor(key,nombre, apellido, fecha,numero , correo, contrasena, licencia);
                             dao.add(emp).addOnSuccessListener(suc ->
                             {
                                 Toast.makeText(getApplicationContext(), "Record is inserted", Toast.LENGTH_SHORT).show();

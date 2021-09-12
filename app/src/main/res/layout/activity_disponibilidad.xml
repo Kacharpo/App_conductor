@@ -19,17 +19,17 @@
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="20dp"
         android:text="Disponibilidad"
-        android:textColor="@color/grey"
+        android:textColor="#0CF318"
         android:textSize="16dp"
         android:textStyle="bold" />
 
     <ImageView
+        android:layout_marginTop="90dp"
         android:id="@+id/imageViewAsiento"
         android:layout_width="66dp"
         android:layout_height="66dp"
-        android:layout_marginTop="90dp"
-        android:onClick="avanzar"
-        app:srcCompat="@drawable/ic_stat_asientorojo" />
+        app:srcCompat="@drawable/ic_stat_asientorojo"
+        />
 
     <LinearLayout
         android:layout_marginLeft="70dp"
@@ -55,14 +55,13 @@
             android:text="16/16"
             />
     </LinearLayout>
-
     <ImageView
+        android:layout_marginTop="180dp"
         android:id="@+id/imageViewAsiento2"
         android:layout_width="66dp"
         android:layout_height="66dp"
-        android:layout_marginTop="180dp"
-        android:onClick="avanzar"
-        app:srcCompat="@drawable/ic_stat_asientoverde" />
+        app:srcCompat="@drawable/ic_stat_asientoverde"
+        />
 
     <LinearLayout
         android:layout_marginLeft="70dp"
