@@ -44,11 +44,7 @@
             android:name=".PrincipalMenuActivity"
             android:label="@string/title_activity_principal_menu"
             android:theme="@style/Theme.App_conductor.NoActionBar">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
             </activity>
         <activity android:name=".BienvenidoActivity" />
         <activity android:name=".Log_in" />
@@ -58,7 +54,11 @@
             android:theme="@style/Theme.App_conductor.NoActionBar" />
         <activity android:name=".RecuperarContra" />
         <activity android:name=".Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Registro.RegistroControl" />
         <activity android:name=".AlertaActivity" />
