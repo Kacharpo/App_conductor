@@ -28,8 +28,8 @@ public class PrincipalMenuActivity extends AppCompatActivity {
         setSupportActionBar(binding.appBarPrincipalMenu.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        //Passing each menu ID as a set of Ids because each
+        //menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.mensajeFragment, R.id.viajesFragment, R.id.configuracionFragment,R.id.principalFragment)
                 .setDrawerLayout(drawer)

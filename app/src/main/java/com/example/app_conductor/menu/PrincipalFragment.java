@@ -1,6 +1,8 @@
 package com.example.app_conductor.menu;
 
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -48,7 +50,7 @@ import com.example.app_conductor.Alertas.AlertaTrafico;
 import com.example.app_conductor.Blank;
 import com.example.app_conductor.Controlador.PagerController;
 import com.example.app_conductor.Fragmento;
-import com.example.app_conductor.Principal;
+import com.example.app_conductor.PrincipalMenuActivity;
 import com.example.app_conductor.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -65,8 +67,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -195,7 +195,7 @@ public class PrincipalFragment extends Fragment implements OnMapReadyCallback ,G
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_principal,container,false);
 
-        at_ubicacion = (AutoCompleteTextView)v.findViewById(R.id.atxt_c_ubicacion);
+        at_ubicacion = (AutoCompleteTextView)v.findViewById(R.id.atxt_ca_calle1);
         at_destino = (AutoCompleteTextView)v.findViewById(R.id.atxt_c_destino);
 
         tv_ficha = (TextView)v.findViewById(R.id.tv_c_ficha);
@@ -205,7 +205,6 @@ public class PrincipalFragment extends Fragment implements OnMapReadyCallback ,G
         ti_inicio = (TabItem)v.findViewById(R.id.ti_c_inicio);
         ti_final = (TabItem)v.findViewById(R.id.ti_c_final);
         ti_tiempo = (TabItem)v.findViewById(R.id.ti_c_tiempo);
-        ti_conductor = (TabItem)v.findViewById(R.id.ti_c_conductor);
         ti_disponibilidad = (TabItem)v.findViewById(R.id.ti_c_disponibilidad);
         sp_rutas = (Spinner)v.findViewById(R.id.sp_c_rutas);
         btn_alerta = (Button)v.findViewById(R.id.btn_c_alerta);
@@ -518,7 +517,7 @@ public class PrincipalFragment extends Fragment implements OnMapReadyCallback ,G
         //Permiso de localizacion
         int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
         //Intent para cambio de Activity
-        Intent refresh = new Intent(getActivity().getApplicationContext(), Principal.class);
+        Intent refresh = new Intent(getActivity().getApplicationContext(), PrincipalMenuActivity.class);
         //Checar y pedir permiso
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(getActivity().getApplicationContext(), "Permiso de ubicacion accedido", LENGTH_SHORT).show();

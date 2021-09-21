@@ -60,8 +60,9 @@ public class Log_in extends AppCompatActivity {
                             "Sesion iniciada con facebook : "+accessToken, Toast.LENGTH_SHORT);
 
             toast1.show();
-            Intent a = new Intent(getApplicationContext(), PrincipalMenuActivity.class);
-            startActivity(a);
+            Intent i = new Intent(Log_in.this, PrincipalMenuActivity.class);
+            startActivity(i);
+            finish();
         }
 
         // Configurar Google Sign In
@@ -94,8 +95,9 @@ public class Log_in extends AppCompatActivity {
                                 "Log in exitoso !", Toast.LENGTH_SHORT);
 
                 toast1.show();
-                Intent a = new Intent(getApplicationContext(), PrincipalMenuActivity.class);
-                startActivity(a);
+                Intent i = new Intent(Log_in.this, PrincipalMenuActivity.class);
+                startActivity(i);
+                finish();
 
             }
 
@@ -157,8 +159,9 @@ public class Log_in extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             //FirebaseUser user = mAuth.getCurrentUser();
-                            Intent a = new Intent(getApplicationContext(), PrincipalMenuActivity.class);
-                            startActivity(a);
+                            Intent i = new Intent(Log_in.this, PrincipalMenuActivity.class);
+                            startActivity(i);
+                            finish();
 //Iniciar DASHBOARD u otra actividad luego del SigIn Exitoso
                         } else {
                             // If sign in fails, display a message to the user.
@@ -209,7 +212,7 @@ public class Log_in extends AppCompatActivity {
                     ("select correo, contrasena from registro_conductor where correo = '"+usuario+"' and contrasena = '"+contrasena+"'" ,null);
             if(fila.moveToFirst()) {
                 if(usuario.equals(fila.getString(0)) && contrasena.equals(fila.getString(1))){
-                    Intent i = new Intent(Log_in.this, Principal.class);
+                    Intent i = new Intent(Log_in.this, PrincipalMenuActivity.class);
                     startActivity(i);
                     finish();
                 }else{
