@@ -13,7 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_conductor">
-        <activity android:name=".Registro.Registro_nuevo_conductor"></activity>
+        <activity android:name=".Validacion_telefono">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Registro.Registro_nuevo_conductor" />
         <activity android:name=".Registro.Aviso_privacidad" />
 
         <meta-data
@@ -43,9 +50,7 @@
         <activity
             android:name=".PrincipalMenuActivity"
             android:label="@string/title_activity_principal_menu"
-            android:theme="@style/Theme.App_conductor.NoActionBar">
-
-            </activity>
+            android:theme="@style/Theme.App_conductor.NoActionBar"></activity>
         <activity android:name=".BienvenidoActivity" />
         <activity android:name=".Log_in" />
         <activity
