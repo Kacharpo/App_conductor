@@ -1,7 +1,10 @@
 package com.example.app_conductor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -51,5 +54,13 @@ public class PrincipalMenuActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_principal_navegacion);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public boolean validacion_tel(MenuItem item){
+
+        Intent i = new Intent(PrincipalMenuActivity.this, Validacion_telefono.class);
+        startActivity(i);
+        finish();
+        return true;
     }
 }

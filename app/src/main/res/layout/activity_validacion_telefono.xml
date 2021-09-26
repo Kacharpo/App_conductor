@@ -204,7 +204,7 @@
             android:maxLength="1"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
-    -->
+
 
 
     <TextView
@@ -214,24 +214,7 @@
         android:layout_below="@id/btn_validar"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/tv_c_intentos" />
+        android:text="@string/tv_c_intentos" />-->
 
-    <TextView
-        android:id="@+id/tv_c_recibir"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_c_intentos"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/tv_c_recibir" />
 
-    <Button
-        android:id="@+id/btn_c_reenviar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_c_recibir"
-        android:layout_marginTop="16dp"
-        android:text="@string/btn_c_reenviar"
-        app:cornerRadius="10dp"
-        tools:ignore="TextContrastCheck" />
 </RelativeLayout>
