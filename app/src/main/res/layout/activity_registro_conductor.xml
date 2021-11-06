@@ -438,7 +438,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:ems="10"
-                            android:hint="Apellidos"
+                            android:hint="Licencia"
                             app:counterEnabled="true"
                             app:counterMaxLength="20"
 

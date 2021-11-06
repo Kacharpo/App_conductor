@@ -3,10 +3,12 @@ package com.example.app_conductor;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import com.example.app_conductor.Registro.Aviso_privacidad;
 import com.example.app_conductor.Registro.RegistroControl;
 import com.example.app_conductor.Registro.Registro_nuevo_conductor;
+import com.example.app_conductor.menu.MensajeFragment;
 import com.example.app_conductor.utils.InputValidation;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -32,18 +35,29 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Random;
 
 
 public class Log_in extends AppCompatActivity {
     private EditText et_usuario, et_contrasena;
     private CallbackManager callbackManager;
     private LoginButton loginButton;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth,nAuth;
     private GoogleSignInClient mGoogleSignInClient;
+    private int codigo = codigo(999999);
     int RC_SIGN_IN = 1;
+    String email;
+    String password;
     String TAG = "GoogleSignIn";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,31 +213,98 @@ public class Log_in extends AppCompatActivity {
         finish();
     }
     public void ingresar(View view){
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "registro",null,1);
-        SQLiteDatabase db = admin.getWritableDatabase();
-
         String usuario = et_usuario.getText().toString();
         boolean usuario_b = InputValidation.isValidEditText(et_usuario, getString(R.string.field_is_required));
         String contrasena = et_contrasena.getText().toString();
         boolean contrasena_b = InputValidation.isValidEditText(et_contrasena, getString(R.string.field_is_required));
 
-        if(usuario_b && contrasena_b){
-            Cursor fila = db.rawQuery
-                    ("select correo, contrasena from registro_conductor where correo = '"+usuario+"' and contrasena = '"+contrasena+"'" ,null);
-            if(fila.moveToFirst()) {
-                if(usuario.equals(fila.getString(0)) && contrasena.equals(fila.getString(1))){
-                    Intent i = new Intent(Log_in.this, PrincipalMenuActivity.class);
-                    startActivity(i);
-                    finish();
-                }else{
-                    Toast.makeText(this, "Usuario y/o Contraseña incorrectos", Toast.LENGTH_SHORT).show();
+        email = et_usuario.getText().toString();
+        password = et_contrasena.getText().toString();
+
+        if (TextUtils.isEmpty(email)) {
+            et_usuario.setError("Email cannot be empty");
+            et_usuario.requestFocus();
+        } else if (TextUtils.isEmpty(password)) {
+            et_contrasena.setError("Password cannot be empty");
+            et_contrasena.requestFocus();
+        } else {
+            nAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+                        databaseReference.child("Registro").addValueEventListener(new ValueEventListener() {
+
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()){
+                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+
+                                        String mail= dataSnapshot.child("correo").getValue().toString();
+                                        if(email.equals(mail)){
+
+                                            String confirmado=dataSnapshot.child("confirmado").getValue().toString();
+                                            if(confirmado.equals("true")){
+                                                Intent correo = new Intent(getApplicationContext(), PrincipalMenuActivity.class);
+                                                correo.putExtra("EmailTo",email);
+                                                startActivity(correo);
+
+                                            }else{
+                                                datos();
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                        Toast.makeText(getApplicationContext(), "User logged in successfully", Toast.LENGTH_SHORT).show();
+
+
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Log in Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }else {
-                Toast.makeText(this, "No exite el registro", Toast.LENGTH_SHORT).show();
-            }
-            db.close();
-        }else {
-            Toast.makeText(this, "Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
+            });
         }
     }
+
+    private void datos(){
+        try {
+            Intent correos = new Intent(getApplicationContext(), ConfirmarCuenta.class);
+            correos.putExtra("EmailTo",email);
+            correos.putExtra("Codigo",""+codigo);
+            startActivity(correos);} catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error: "+e, Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private int codigo(int max){
+        Random random = new Random();
+        random.setSeed(System.currentTimeMillis());
+
+        int numero = random.nextInt(max);
+        return numero;
+    }
+
+    private final void checkUser() {
+        FirebaseUser currentUser = this.mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent((Context)this, MensajeFragment.class);
+            intent.putExtra("user", currentUser.getEmail());
+            this.finish();
+        }
+
+    }
+
+
 }

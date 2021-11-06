@@ -1,6 +1,8 @@
 package com.example.app_conductor;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.app_conductor.utils.MemoriaPreferences;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +24,7 @@ public class PrimerFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    Activity actividad;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -53,6 +58,13 @@ public class PrimerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String memcache = MemoriaPreferences.getDefaultsPreference("Primeruso",getActivity());
+        if(memcache != null && memcache.equals("true")){
+            Intent i = new Intent(actividad, Log_in.class);
+            startActivity(i);
+            actividad.finish();
+        }
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -74,6 +86,12 @@ public class PrimerFragment extends Fragment {
 
         }else { throw  new RuntimeException(context.toString()
         +"must implement OnFragmentInteractionListener");
+        }
+        if(context instanceof Activity){
+            actividad= (Activity) context;
+
+        }else { throw  new RuntimeException(context.toString()
+                +"must implement OnFragmentInteractionListener");
         }
     }
 

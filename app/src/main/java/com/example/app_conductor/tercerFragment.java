@@ -12,6 +12,8 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.app_conductor.utils.MemoriaPreferences;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link tercerFragment#newInstance} factory method to
@@ -60,6 +62,9 @@ public class tercerFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
     }
 
     @Override
@@ -71,6 +76,7 @@ public class tercerFragment extends Fragment {
       btnFin.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+              MemoriaPreferences.setDefaultsPreference("Primeruso","true",v.getContext());
               Intent i = new Intent(actividad, Log_in.class);
               startActivity(i);
               actividad.finish();
