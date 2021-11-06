@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.app_conductor.Registro.Aviso_privacidad;
+import com.example.app_conductor.Registro.DaoRegistro;
 import com.example.app_conductor.Registro.RegistroControl;
 import com.example.app_conductor.Registro.Registro_nuevo_conductor;
 import com.example.app_conductor.menu.MensajeFragment;
@@ -55,8 +56,10 @@ public class Log_in extends AppCompatActivity {
     private FirebaseAuth mAuth,nAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private int codigo = codigo(999999);
+    DatabaseReference nDatabase;
     int RC_SIGN_IN = 1;
     String email;
+    DaoRegistro dao;
     String password;
     String TAG = "GoogleSignIn";
     @Override
@@ -134,7 +137,28 @@ public class Log_in extends AppCompatActivity {
                 Log.d("debug ", "Error : "+exception);
             }
         });
+        nAuth = FirebaseAuth.getInstance();
 
+        dao = new DaoRegistro();
+
+        nDatabase = FirebaseDatabase.getInstance().getReference();
+
+        nDatabase.child("Persona").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String correo = snapshot.child("Correo").getValue().toString();
+                    String contrasena = snapshot.child("Contrasena").getValue().toString();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        nAuth.setLanguageCode("es");
+        mAuth.setLanguageCode("es");
     }
 
     @Override
